@@ -10,7 +10,7 @@ import '../results.dart';
 enum Verb { get, post, put, delete, patch }
 
 class HttpService {
-  static const urlPrefix = "http://";
+  static const urlPrefix = "https://";
 
   Future<Either<Failure, Response>> call(Verb verb, String endpoint, Map<String, String> headers,
       {dynamic body,
@@ -38,7 +38,7 @@ class HttpService {
           response = await http.patch(Uri.parse(url), headers: headers, body: json.encode(body)).timeout(timeout);
           break;
         default:
-          throw Exception("Invalid verb");
+          throw Exception("invalid verb");
       }
       return Right(response);
     } catch (err) {

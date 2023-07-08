@@ -1,6 +1,7 @@
 import 'package:client/core/cubit/search_prefs_cubit.dart';
 import 'package:client/core/entities/class.dart';
 import 'package:client/core/entities/post.dart';
+import 'package:client/core/router.dart';
 import 'package:client/core/styles/typography.dart';
 import 'package:client/widgets/post_tile.dart';
 import 'package:client/widgets/touchable_opacity.dart';
@@ -47,8 +48,7 @@ class _FeedScreenState extends State<FeedScreen> {
                     ),
                   ),
                   TouchableOpacity(
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const ClassesScreen(), fullscreenDialog: true)),
+                    onTap: () => router.push("/classes"),
                     child: Container(
                       color: Colors.transparent, // transparent hitbox trick
                       padding: const EdgeInsets.all(5),

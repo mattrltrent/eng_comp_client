@@ -12,9 +12,3 @@ class QueryClassesLoaded extends QueryClassesState {
 
   QueryClassesLoaded(this.classes);
 }
-
-class QueryClassesError extends QueryClassesState {
-  final String message;
-
-  QueryClassesError(this.message);
-}

@@ -28,12 +28,13 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           lazy: false,
-          create: (context) => sl<QueryClassesCubit>(),
+          create: (context) => sl<QueryClassesCubit>()..loadClasses(),
         ),
         BlocProvider(
           lazy: false,
-          create: (context) => sl<AuthCubit>()..silentAuth(artificialDelay: true),
-        ),
+          create: (context) => sl<AuthCubit>()..silentAuth(artificialDelay: true), // TODO
+          // create: (context) => sl<AuthCubit>()),
+        )
       ],
       child: BlocListener<AuthCubit, AuthState>(
         listenWhen: (previous, current) => previous != current,
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
             // context.read<MessagesCubit>().setState(MessagesLoading());
             router.go('/open');
           } else if (state is AuthFailed) {
-            showBanner(context, state.message);
+            // nothing
+            // showBanner(context, state.message);
           } else {
             print(state);
             router.go('/error');

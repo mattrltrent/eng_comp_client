@@ -3,6 +3,7 @@ import 'package:client/screens/tab_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../screens/classes.dart';
 import '../screens/error.dart';
 import '../screens/login.dart';
 import '../screens/open.dart';
@@ -17,6 +18,7 @@ final GoRouter router = GoRouter(
     GoRoute(path: '/login', builder: (BuildContext context, GoRouterState state) => const LoginScreen()),
     GoRoute(path: '/register', builder: (BuildContext context, GoRouterState state) => const RegisterScreen()),
     GoRoute(path: '/error', builder: (BuildContext context, GoRouterState state) => const ErrorScreen()),
+    GoRoute(path: "/classes", builder: (BuildContext context, GoRouterState state) => const ClassesScreen()),
     GoRoute(
       path: '/home',
       builder: (BuildContext context, GoRouterState state) => const TabManager(),

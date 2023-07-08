@@ -1,3 +1,4 @@
+import 'package:client/core/cubit/auth_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -64,19 +65,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Logged in as: bob@gmail.com",
-                    style: kTitle.copyWith(color: Theme.of(context).colorScheme.onSurface),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  TextButton(
-                    onPressed: () => print("abc"),
-                    child: Text(
-                      "Logout",
-                      style: kTitle.copyWith(color: Theme.of(context).colorScheme.primary),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  )
+                  (context.watch<AuthCubit>().state is Authenticated)
+                      ? Column(
+                          children: [
+                            Text(
+                              "Logged in as: ${(context.watch<AuthCubit>().state as Authenticated).email.split("@")[0]} (${(context.watch<AuthCubit>().state as Authenticated).email})",
+                              style: kTitle.copyWith(color: Theme.of(context).colorScheme.onSurface),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            TextButton(
+                              onPressed: () => print("abc"),
+                              child: Text(
+                                "Logout",
+                                style: kTitle.copyWith(color: Theme.of(context).colorScheme.primary),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            )
+                          ],
+                        )
+                      : Text(
+                          "No user",
+                          style: kTitle.copyWith(color: Theme.of(context).colorScheme.primary),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                 ],
               ),
             )

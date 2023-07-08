@@ -1,4 +1,8 @@
+import 'package:client/core/cubit/query_classes_cubit.dart';
+import 'package:client/core/entities/class.dart';
+import 'package:client/widgets/class_code_groups.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable/exports.dart';
 
 import '../core/styles/typography.dart';
@@ -13,6 +17,8 @@ class SearchClassesScreen extends StatefulWidget {
 }
 
 class _SearchClassesScreenState extends State<SearchClassesScreen> {
+  List<Class> classes = [];
+
   @override
   Widget build(BuildContext context) {
     return KeyboardDismiss(
@@ -54,9 +60,11 @@ class _SearchClassesScreenState extends State<SearchClassesScreen> {
                     const SizedBox(height: 10),
                     ExpandableTextfield(
                       controller: TextEditingController(),
-                      onChanged: (text) => print(text),
+                      onChanged: (text) =>
+                          setState(() => classes = context.read<QueryClassesCubit>().searchClasses(text)),
                       hintText: "Search classes...",
                     ),
+                    ClassCodeGroups(classes: classes, onRemove: (r) => {}),
                   ],
                 ),
               ))

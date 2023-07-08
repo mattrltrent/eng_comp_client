@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../core/cubit/auth_cubit.dart';
+import '../funcs/show_banner.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -11,13 +12,13 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  late TextEditingController usernameController;
+  late TextEditingController emailController;
   late TextEditingController passwordController;
   late TextEditingController displayNameController;
 
   @override
   void initState() {
-    usernameController = TextEditingController();
+    emailController = TextEditingController();
     passwordController = TextEditingController();
     displayNameController = TextEditingController();
     super.initState();
@@ -25,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    usernameController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     displayNameController.dispose();
     super.dispose();
@@ -33,25 +34,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(onPressed: () => Navigator.pop(context), child: Text("BACK")),
-            Text("username:"),
-            TextField(controller: usernameController),
-            Text("display name:"),
-            TextField(controller: displayNameController),
-            Text("pw:"),
-            TextField(controller: passwordController),
-            TextButton(
-              onPressed: () => context
-                  .read<AuthCubit>()
-                  .register(usernameController.text, passwordController.text, displayNameController.text),
-              child: Text("register"),
-            ),
-          ],
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthFailed) {
+          showBanner(context, state.message);
+        }
+      },
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(onPressed: () => Navigator.pop(context), child: Text("BACK")),
+              Text("email:"),
+              TextField(controller: emailController),
+              Text("pw:"),
+              TextField(controller: passwordController),
+              TextButton(
+                onPressed: () => context.read<AuthCubit>().register(emailController.text, passwordController.text),
+                child: Text("register"),
+              ),
+            ],
+          ),
         ),
       ),
     );

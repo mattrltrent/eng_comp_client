@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:meta/meta.dart';
@@ -14,7 +13,12 @@ import '../services/db.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthLoading());
+  // AuthCubit() : super(AuthLoading()); // TODO
+  AuthCubit()
+      : super(Authenticated(
+            email: "some email",
+            token:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJvdG9uLm1lIiwicGFzc3dvcmQiOiJ0ZXN0IiwiaXNzIjoiRWR1QnVkZHkiLCJzdWIiOiJoYWxuXzAxQHByb3Rvbi5tZSIsImV4cCI6MTY4ODkyOTkwMCwibmJmIjoxNjg4ODQzNTAwLCJpYXQiOjE2ODg4NDM1MDB9.heS2BJP1i6TVjOBHzp2_li4ymlc6BUHhNBPlyGJeq_Y"));
 
   Future<void> logout() async {
     final res = await sl.get<DbService>().delete("token");
@@ -25,54 +29,57 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> register(String username, String password, String displayName) async {
+  Future<void> register(String email, String password) async {
     try {
-      (await sl.get<HttpService>().call(Verb.post, "/register", {},
-              body: {"username": username, "password": password, "display_name": displayName},
-              timeout: const Duration(seconds: 8)))
+      (await sl.get<HttpService>().call(
+                Verb.post,
+                "/auth",
+                {},
+                body: {"email": email, "password": password},
+                timeout: const Duration(seconds: 8),
+              ))
           .fold(
         (failure) => emit(AuthFailed(message: "Ill-formatted request")),
         (response) async {
           if (response.statusCode == 201) {
-            String token = json.decode(response.body)["body"]["token"];
+            String token = json.decode(response.body)["token"];
             final res = await sl.get<DbService>().write("token", token);
             if (res is Success) {
-              emit(Authenticated(username: username, token: token));
+              emit(Authenticated(email: email, token: token));
             } else {
               emit(CriticalAuthError(message: "Failed to write token"));
             }
           } else {
-            emit(AuthFailed(message: "Non-201 code"));
+            emit(AuthFailed(message: "Non-201 code (${response.statusCode})"));
           }
         },
       );
-    } catch (_) {
+    } catch (e) {
       emit(AuthFailed(message: "Parsing error"));
     }
   }
 
-  Future<void> login(String username, String password) async {
+  Future<void> login(String email, String password) async {
     try {
-      (await sl.get<HttpService>().call(Verb.post, "/login", {},
-              body: {"username": username, "password": password}, timeout: const Duration(seconds: 8)))
+      (await sl.get<HttpService>().call(Verb.post, "/signin", {},
+              body: {"email": email, "password": password}, timeout: const Duration(seconds: 8)))
           .fold(
         (failure) => emit(AuthFailed(message: "Ill-formatted request")),
         (response) async {
           if (response.statusCode == 200) {
-            String token = json.decode(response.body)["body"]["token"];
+            String token = json.decode(response.body)["token"];
             final res = await sl.get<DbService>().write("token", token);
             if (res is Success) {
-              emit(Authenticated(username: username, token: token));
+              emit(Authenticated(email: email, token: token));
             } else {
               emit(CriticalAuthError(message: "Failed to write token"));
             }
           } else {
-            emit(AuthFailed(message: "Non-200 code"));
+            emit(AuthFailed(message: "Non-200 code (${response.statusCode})"));
           }
         },
       );
     } catch (err) {
-      print("ERRROR++++>>: ${Left(err).runtimeType}");
       emit(AuthFailed(message: "Parsing error"));
     }
   }
@@ -87,12 +94,12 @@ class AuthCubit extends Cubit<AuthState> {
           emit(CriticalAuthError(message: "Error reading local db"));
         }
       }, (token) async {
-        String username = JwtDecoder.decode(token)["username"];
+        String email = JwtDecoder.decode(token)["email"];
         int expiry = JwtDecoder.decode(token)["exp"];
         if (expiry < DateTime.now().millisecondsSinceEpoch / 1000) {
           logout();
         } else {
-          emit(Authenticated(username: username, token: token));
+          emit(Authenticated(email: email, token: token));
         }
       });
     } catch (_) {

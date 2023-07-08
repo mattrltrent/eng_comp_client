@@ -32,13 +32,13 @@ class CriticalAuthError extends AuthState {
 }
 
 class Authenticated extends AuthState {
-  final String username;
+  final String email;
   final String token;
 
   Authenticated({
-    required this.username,
+    required this.email,
     required this.token,
   });
   @override
-  List<Object?> get props => [username, token];
+  List<Object?> get props => [email, token];
 }
