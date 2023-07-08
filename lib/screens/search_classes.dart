@@ -78,6 +78,7 @@ class _SearchClassesScreenState extends State<SearchClassesScreen> {
                           setState(() => classes = context.read<QueryClassesCubit>().searchClasses(text)),
                       hintText: "Search classes...",
                     ),
+                    const SizedBox(height: 20),
                     ClassCodeGroups(classes: classes, onRemove: (r) => {}),
                   ],
                 ),

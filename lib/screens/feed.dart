@@ -59,19 +59,56 @@ class _FeedScreenState extends State<FeedScreen> {
               ),
             ),
             Expanded(
-              child: Column(
-                children: [
-                  PostTile(
-                    post: Post(
-                      email: "bob@gmail.com",
-                      name: "bob",
-                      posterType: PosterType.student,
-                      allClasses: [Class(name: "MATH", code: 122), Class(name: "CSC", code: 226)],
-                      intersectionClasses: [Class(name: "MATH", code: 122)],
-                      desc: "i need so much help",
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    PostTile(
+                      post: Post(
+                        email: "bob@gmail.com",
+                        name: "julie",
+                        posterType: PosterType.student,
+                        allClasses: [Class(name: "MUS", code: 109), Class(name: "CSC", code: 230)],
+                        intersectionClasses: [Class(name: "MATH", code: 122)],
+                        desc: "i need so much help",
+                      ),
                     ),
-                  ),
-                ],
+                    PostTile(
+                      post: Post(
+                        email: "bob@gmail.com",
+                        name: "frank",
+                        posterType: PosterType.student,
+                        allClasses: [Class(name: "MATH", code: 122)],
+                        intersectionClasses: [Class(name: "MATH", code: 122)],
+                        desc: "i need so much help",
+                      ),
+                    ),
+                    PostTile(
+                      post: Post(
+                        email: "bob@gmail.com",
+                        name: "bob",
+                        posterType: PosterType.student,
+                        allClasses: [
+                          Class(name: "MATH", code: 122),
+                          Class(name: "ECON", code: 103),
+                          Class(name: "COM", code: 100),
+                          Class(name: "CSC", code: 226)
+                        ],
+                        intersectionClasses: [Class(name: "MATH", code: 122)],
+                        desc: "i need so much help",
+                      ),
+                    ),
+                    PostTile(
+                      post: Post(
+                        email: "bob@gmail.com",
+                        name: "jeff",
+                        posterType: PosterType.student,
+                        allClasses: [Class(name: "PHYS", code: 233), Class(name: "PHYS", code: 330)],
+                        intersectionClasses: [Class(name: "MATH", code: 122)],
+                        desc: "i need so much help",
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
