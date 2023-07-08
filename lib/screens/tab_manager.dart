@@ -1,8 +1,9 @@
-import 'package:client/screens/dummy.dart';
+import 'package:client/screens/profile.dart';
 import 'package:client/screens/feed.dart';
 import 'package:client/widgets/themed_status_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TabManager extends StatefulWidget {
   const TabManager({super.key});
@@ -41,7 +42,7 @@ class _TabManagerState extends State<TabManager> with SingleTickerProviderStateM
             index: currentIndex,
             children: const [
               FeedScreen(),
-              DummyScreen(),
+              ProfileScreen(),
             ],
           ),
           bottomNavigationBar: Container(
@@ -51,6 +52,7 @@ class _TabManagerState extends State<TabManager> with SingleTickerProviderStateM
               child: TabBar(
                 controller: tabController,
                 onTap: (index) {
+                  HapticFeedback.lightImpact();
                   setState(() {
                     currentIndex = index;
                   });

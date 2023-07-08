@@ -1,12 +1,10 @@
-import 'package:client/screens/open.dart';
+import 'package:client/di.dart';
 import 'package:client/screens/tab_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'core/styles/themes.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() async => await init().then((_) => runApp(const MyApp()));
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
