@@ -22,5 +22,7 @@ class SearchPrefsInitial extends SearchPrefsState {
   final LookingFor lookingFor;
   final List<Class> classes;
 
-  SearchPrefsInitial({this.lookingFor = LookingFor.all, this.classes = const []});
+  SearchPrefsInitial({this.lookingFor = LookingFor.all, List<Class>? classes})
+      : classes =
+            classes ?? [Class(name: "MATH", code: 291), Class(name: "MATH", code: 222), Class(name: "CSC", code: 226)];
 }

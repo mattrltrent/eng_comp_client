@@ -52,23 +52,30 @@ class MyApp extends StatelessWidget {
             router.go('/error');
           }
         },
-        child: MaterialApp.router(
-          routeInformationProvider: router.routeInformationProvider,
-          routeInformationParser: router.routeInformationParser,
-          routerDelegate: router.routerDelegate,
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: AppTheme.light,
           darkTheme: AppTheme.dark,
           themeMode: ThemeMode.system,
-          debugShowCheckedModeBanner: false,
-          title: "TutorHub",
-          builder: (BuildContext context, Widget? child) {
-            final MediaQueryData data = MediaQuery.of(context);
-            return MediaQuery(
-              data: data.copyWith(textScaleFactor: 1),
-              child: child!,
-            );
-          },
+          home: const TabManager(),
         ),
+        // child: MaterialApp.router(
+        //   routeInformationProvider: router.routeInformationProvider,
+        //   routeInformationParser: router.routeInformationParser,
+        //   routerDelegate: router.routerDelegate,
+        //   theme: AppTheme.light,
+        //   darkTheme: AppTheme.dark,
+        //   themeMode: ThemeMode.system,
+        //   debugShowCheckedModeBanner: false,
+        //   title: "TutorHub",
+        //   builder: (BuildContext context, Widget? child) {
+        //     final MediaQueryData data = MediaQuery.of(context);
+        //     return MediaQuery(
+        //       data: data.copyWith(textScaleFactor: 1),
+        //       child: child!,
+        //     );
+        //   },
+        // ),
       ),
     );
   }

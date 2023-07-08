@@ -24,12 +24,6 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      floatingActionButton: IconButton(
-        onPressed: () {
-          HapticFeedback.lightImpact();
-        },
-        icon: const Icon(CupertinoIcons.add),
-      ),
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -48,7 +42,9 @@ class _FeedScreenState extends State<FeedScreen> {
                     ),
                   ),
                   TouchableOpacity(
-                    onTap: () => router.push("/classes"),
+                    // onTap: () => router.push("/classes"),
+                    onTap: () =>
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ClassesScreen())),
                     child: Container(
                       color: Colors.transparent, // transparent hitbox trick
                       padding: const EdgeInsets.all(5),

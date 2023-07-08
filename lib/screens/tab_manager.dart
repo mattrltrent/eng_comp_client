@@ -1,3 +1,4 @@
+import 'package:alert_banner/widgets/alert.dart';
 import 'package:client/screens/profile.dart';
 import 'package:client/screens/feed.dart';
 import 'package:client/widgets/themed_status_bar.dart';
@@ -38,6 +39,8 @@ class _TabManagerState extends State<TabManager> with SingleTickerProviderStateM
       child: Container(
         color: Theme.of(context).colorScheme.background,
         child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+              onPressed: () => showAlertBanner(context, () {}, Container()), child: const Icon(CupertinoIcons.add)),
           body: IndexedStack(
             index: currentIndex,
             children: const [

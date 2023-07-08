@@ -21,13 +21,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          HapticFeedback.lightImpact();
-          print("TODO new post");
-        },
-        child: const Icon(CupertinoIcons.add),
-      ),
       body: SafeArea(
         bottom: false,
         child: Column(

@@ -13,7 +13,7 @@ class QueryClassesCubit extends Cubit<QueryClassesState> {
       // Perform fuzzy matching against the query
       String className = classObj.name.toLowerCase();
       query = query.toLowerCase();
-      return className.contains(query);
+      return (className + ("${classObj.code}")).contains(query);
     }).toList();
     filteredClasses = filteredClasses.take(10).toList();
 

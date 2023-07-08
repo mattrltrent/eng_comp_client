@@ -19,6 +19,20 @@ class SearchClassesScreen extends StatefulWidget {
 class _SearchClassesScreenState extends State<SearchClassesScreen> {
   List<Class> classes = [];
 
+  late TextEditingController ctr;
+
+  @override
+  void initState() {
+    ctr = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    ctr.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return KeyboardDismiss(
@@ -59,7 +73,7 @@ class _SearchClassesScreenState extends State<SearchClassesScreen> {
                   children: [
                     const SizedBox(height: 10),
                     ExpandableTextfield(
-                      controller: TextEditingController(),
+                      controller: ctr,
                       onChanged: (text) =>
                           setState(() => classes = context.read<QueryClassesCubit>().searchClasses(text)),
                       hintText: "Search classes...",
