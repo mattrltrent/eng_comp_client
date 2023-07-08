@@ -1,7 +1,10 @@
+import 'package:client/core/cubit/search_prefs_cubit.dart';
 import 'package:client/core/styles/typography.dart';
 import 'package:client/widgets/touchable_opacity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'classes.dart';
 
@@ -17,6 +20,13 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          HapticFeedback.lightImpact();
+          print("TODO new post");
+        },
+        child: const Icon(CupertinoIcons.add),
+      ),
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -29,7 +39,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      "Matching everyone",
+                      lookingForToString((context.watch<SearchPrefsCubit>().state as SearchPrefsInitial).lookingFor),
                       style: kTitle.copyWith(color: Theme.of(context).colorScheme.primary),
                       overflow: TextOverflow.ellipsis,
                     ),

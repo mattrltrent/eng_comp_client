@@ -41,6 +41,7 @@ dependencies:
   equatable: ^2.0.5
   google_fonts: ^5.1.0
   modal_bottom_sheet: ^2.1.2
+  scrollable: ^1.0.4
 
 dev_dependencies:
   flutter_test:

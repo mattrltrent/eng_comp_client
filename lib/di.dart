@@ -1,4 +1,4 @@
-import 'package:client/core/cubit/classes_cubit.dart';
+import 'package:client/core/cubit/search_prefs_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
@@ -9,5 +9,5 @@ Future<void> init() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // register application states
-  sl.registerFactory(() => ClassesCubit());
+  sl.registerFactory(() => SearchPrefsCubit());
 }
