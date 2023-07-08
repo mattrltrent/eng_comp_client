@@ -50,6 +50,7 @@ class _TabManagerState extends State<TabManager> with SingleTickerProviderStateM
             child: SafeArea(
               top: false,
               child: TabBar(
+                indicatorSize: TabBarIndicatorSize.label,
                 controller: tabController,
                 onTap: (index) {
                   HapticFeedback.lightImpact();

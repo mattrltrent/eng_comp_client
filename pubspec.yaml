@@ -42,6 +42,7 @@ dependencies:
   google_fonts: ^5.1.0
   modal_bottom_sheet: ^2.1.2
   scrollable: ^1.0.4
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   flutter_test:

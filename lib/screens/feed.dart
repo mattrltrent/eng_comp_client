@@ -1,5 +1,8 @@
 import 'package:client/core/cubit/search_prefs_cubit.dart';
+import 'package:client/core/entities/class.dart';
+import 'package:client/core/entities/post.dart';
 import 'package:client/core/styles/typography.dart';
+import 'package:client/widgets/post_tile.dart';
 import 'package:client/widgets/touchable_opacity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -61,10 +64,21 @@ class _FeedScreenState extends State<FeedScreen> {
               ),
             ),
             Expanded(
-              child: Container(
-                color: Colors.red,
+              child: Column(
+                children: [
+                  PostTile(
+                    post: Post(
+                      email: "bob@gmail.com",
+                      name: "bob",
+                      posterType: PosterType.student,
+                      allClasses: [Class(name: "MATH", code: 122), Class(name: "CSC", code: 226)],
+                      intersectionClasses: [Class(name: "MATH", code: 122)],
+                      desc: "i need so much help",
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
