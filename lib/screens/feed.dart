@@ -23,12 +23,11 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: IconButton(
         onPressed: () {
           HapticFeedback.lightImpact();
-          print("TODO new post");
         },
-        child: const Icon(CupertinoIcons.add),
+        icon: const Icon(CupertinoIcons.add),
       ),
       body: SafeArea(
         bottom: false,

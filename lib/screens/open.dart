@@ -1,15 +1,27 @@
+import 'package:client/screens/login.dart';
+import 'package:client/screens/register.dart';
 import 'package:flutter/material.dart';
 
-class OpenScreen extends StatefulWidget {
+class OpenScreen extends StatelessWidget {
   const OpenScreen({super.key});
 
   @override
-  State<OpenScreen> createState() => _OpenScreenState();
-}
-
-class _OpenScreenState extends State<OpenScreen> {
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen())),
+                child: Text("login")),
+            TextButton(
+                onPressed: () =>
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen())),
+                child: Text("register")),
+          ],
+        ),
+      ),
+    );
   }
 }
