@@ -1,3 +1,6 @@
+import 'package:client/core/entities/class.dart';
+import 'package:client/widgets/class_code_groups.dart';
+import 'package:client/widgets/view_options.dart';
 import 'package:flutter/material.dart';
 
 import '../core/styles/typography.dart';
@@ -49,11 +52,31 @@ class _ClassesScreenState extends State<ClassesScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // looking for
                     Text(
-                      "Looking for...",
+                      "Looking for",
                       style: kDisplay1.copyWith(color: Theme.of(context).colorScheme.primary),
-                      overflow: TextOverflow.ellipsis,
                     ),
+                    const SizedBox(height: 20),
+                    const ViewOptions(),
+                    // matching against
+                    const SizedBox(height: 20),
+                    Text(
+                      "Matching against classes",
+                      style: kDisplay1.copyWith(color: Theme.of(context).colorScheme.primary),
+                    ),
+                    const SizedBox(height: 20),
+                    ClassCodeGroups(
+                      classes: [
+                        Class(name: "MATH", code: 100),
+                        Class(name: "MATH", code: 100),
+                        Class(name: "MATH", code: 100),
+                        Class(name: "MATH", code: 100),
+                        Class(name: "MATH", code: 100),
+                        Class(name: "MATH", code: 100),
+                        Class(name: "MATH", code: 100),
+                      ],
+                    )
                   ],
                 ),
               ),
