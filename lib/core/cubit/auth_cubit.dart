@@ -13,12 +13,12 @@ import '../services/db.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  // AuthCubit() : super(AuthLoading()); // TODO
-  AuthCubit()
-      : super(Authenticated(
-            email: "some email",
-            token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJvdG9uLm1lIiwicGFzc3dvcmQiOiJ0ZXN0IiwiaXNzIjoiRWR1QnVkZHkiLCJzdWIiOiJoYWxuXzAxQHByb3Rvbi5tZSIsImV4cCI6MTY4ODkyOTkwMCwibmJmIjoxNjg4ODQzNTAwLCJpYXQiOjE2ODg4NDM1MDB9.heS2BJP1i6TVjOBHzp2_li4ymlc6BUHhNBPlyGJeq_Y"));
+  AuthCubit() : super(AuthLoading()); // TODO
+  // AuthCubit()
+  //     : super(Authenticated(
+  //           email: "some email",
+  //           token:
+  //               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJvdG9uLm1lIiwicGFzc3dvcmQiOiJ0ZXN0IiwiaXNzIjoiRWR1QnVkZHkiLCJzdWIiOiJoYWxuXzAxQHByb3Rvbi5tZSIsImV4cCI6MTY4ODkyOTkwMCwibmJmIjoxNjg4ODQzNTAwLCJpYXQiOjE2ODg4NDM1MDB9.heS2BJP1i6TVjOBHzp2_li4ymlc6BUHhNBPlyGJeq_Y"));
 
   Future<void> logout() async {
     final res = await sl.get<DbService>().delete("token");
@@ -85,6 +85,12 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> silentAuth({bool artificialDelay = false}) async {
+    emit(NotAuthenticated());
+    emit(Authenticated(
+        email: "some email",
+        token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhbG5fMDFAcHJvdG9uLm1lIiwicGFzc3dvcmQiOiJ0ZXN0IiwiaXNzIjoiRWR1QnVkZHkiLCJzdWIiOiJoYWxuXzAxQHByb3Rvbi5tZSIsImV4cCI6MTY4ODkyOTkwMCwibmJmIjoxNjg4ODQzNTAwLCJpYXQiOjE2ODg4NDM1MDB9.heS2BJP1i6TVjOBHzp2_li4ymlc6BUHhNBPlyGJeq_Y"));
+    return;
     if (artificialDelay) await Future.delayed(const Duration(milliseconds: 500));
     try {
       (await sl.get<DbService>().read("token")).fold((failureOrEmpty) {
