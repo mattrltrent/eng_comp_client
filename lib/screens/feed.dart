@@ -3,6 +3,8 @@ import 'package:client/widgets/touchable_opacity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'classes.dart';
+
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
 
@@ -33,7 +35,8 @@ class _FeedScreenState extends State<FeedScreen> {
                     ),
                   ),
                   TouchableOpacity(
-                    onTap: () => print("tap"),
+                    onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const ClassesScreen(), fullscreenDialog: true)),
                     child: Container(
                       color: Colors.transparent, // transparent hitbox trick
                       padding: const EdgeInsets.all(5),
