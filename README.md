@@ -1,5 +1,5 @@
-## Server code for the UVic Engineering Competition 2023 🚀
-- Client code [here](https://github.com/mattrltrent/eng_comp_client).
+## Client code for the UVic Engineering Competition 2023 🚀
+- Server code [here](https://github.com/mattrltrent/eng_comp_server).
 - The team: [Jaspreet Sidhu](https://github.com/jaspreetks), [Chris Huk](https://github.com/TalentedB), [Hal Nguyen](https://github.com/hn275), and [Matthew Trent](https://github.com/mattrltrent).
 - Stack: Golang, Flutter, Docker, Python, Dart, SQLite, and Fly.io. 
 
