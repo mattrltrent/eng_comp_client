@@ -1,16 +1,21 @@
-# client
+## Server code for the UVic Engineering Competition 2023 🚀
+- Client code [here](https://github.com/mattrltrent/eng_comp_client).
+- The team: [Jaspreet Sidhu](https://github.com/jaspreetks), [Chris Huk](https://github.com/TalentedB), [Hal Nguyen](https://github.com/hn275), and [Matthew Trent](https://github.com/mattrltrent).
+- Stack: Golang, Flutter, Docker, Python, Dart, SQLite, and Fly.io. 
 
-A new Flutter project.
+## The project 📦
 
-## Getting Started
+- A cross-platform mobile app built to connect tutors and students in need of academic assistance.
+	- Feed of "listings" matching students to tutors.
+	- Creation of "help" or "I can help" listings.
+	- Profiles.
+	- Full authentication flow, data persistence, and encryption.
+	- Full search functionality for our university's classes that you can either add/drop from your profile.
+	- Beautiful light/dark-mode theme and design.
+	- Switching between viewing the app as a "tutor" and as a "student".
 
-This project is a starting point for a Flutter application.
+## Results: 1st place 🥇
 
-A few resources to get you started if this is your first Flutter project:
+<img src="https://raw.githubusercontent.com/mattrltrent/random_assets/main/victory.JPG" alt="img" width="300" />
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<sub>^ (everyone on the team got a certificate, this is just mine)</sub>
